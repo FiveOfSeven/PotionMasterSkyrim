@@ -1,0 +1,3 @@
+TODO:
+have it get the information from the skyrim file. It goes from most expensive potion effect to least. you don't need to save them into sub-files
+make it so the program asks if you have certain potions as it runs. It also tells you what the best possible ingredients to use as it runs. y = yes, n = no
