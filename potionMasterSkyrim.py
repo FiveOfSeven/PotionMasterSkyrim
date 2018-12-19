@@ -111,7 +111,7 @@ while userInput != 'q':
             if ing3 != "empty":
                 ingCount += 1
             if ingCount == 1:
-                while effectsListList[effectCount][ingredientCounter2] in usedIngredients and ingredientCounter2 < len(effectsListList[effectCount]):
+                while effectsListList[effectCount][ingredientCounter2] in usedIngredients and effectCount2 < len(effectsListList) and ingredientCounter < len(effectsListList[effectCount]):
                     ingredientCounter += 1
                 if ingredientCounter2 == (len(effectsListList[effectCount]) - 1):
                     print ("reached the end of list %s" % effectCount)
@@ -158,8 +158,8 @@ while userInput != 'q':
                         ing2 = "empty"
                         ing3 = "empty"
                     else:
-                        while effectsListList[effectCount2][ingredientCounter2] in usedIngredients and ingredientCounter2 < len(effectsListList[effectCount2]):
-                            ingredientCounter += 1
+                        while effectsListList[effectCount2][ingredientCounter2] in usedIngredients and effectCount2 < len(effectsListList) and ingredientCounter2 < len(effectsListList[effectCount]):
+                            ingredientCounter2 += 1
                         if (effectCount == effectCount2):
                             print ("effectCounts are the same")
                             print ("reached the end of 2 list %s" % effectCount2)
