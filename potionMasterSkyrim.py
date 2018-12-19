@@ -111,7 +111,7 @@ while userInput != 'q':
             if ing3 != "empty":
                 ingCount += 1
             if ingCount == 1:
-                while effectsListList[effectCount][ingredientCounter2] in usedIngredients and ingredientCounter2 != len(effectsListList[effectCount]):
+                while effectsListList[effectCount][ingredientCounter2] in usedIngredients and ingredientCounter2 < len(effectsListList[effectCount]):
                     ingredientCounter += 1
                 if ingredientCounter2 == (len(effectsListList[effectCount]) - 1):
                     print ("reached the end of list %s" % effectCount)
@@ -131,42 +131,59 @@ while userInput != 'q':
                         usedIngredients.append(effectsListList[effectCount][ingredientCounter2])
                     ingredientCounter2 = ingredientCounter2 + 1
             if ingCount == 2:
-                print("ingcount2")
-                matchExists = False
-                for x in effectsListList[effectCount2]:
-                    if x == ing1 or x == ing2:
-                        matchExists = True
-                while matchExists == False or effectCount2 >= len(effectsListList):
+                if effectCount2 == effectCount:
+                    print("moving up from the 2 list %s" % effectCount2)
                     effectCount2 += 1
-                    ingredientCounter2 = 0
-                    for x in effectsListList[effectCount2]:
-                        if x == ing1 or x == ing2:
-                            matchExists = True
-                if (effectCount2 >= len(effectsListList)):
-                    print("reached the end of the the lists")
+                elif effectCount2 > len(effectsListList):
+                    effectCount2 = effectCount
+                    ingredientCounter2 = ingredientCounter
                     ing1 = "empty"
                     ing2 = "empty"
                     ing3 = "empty"
                 else:
-                    while effectsListList[effectCount2][ingredientCounter2] in usedIngredients and ingredientCounter2 != len(effectsListList[effectCount2]):
-                        ingredientCounter += 1
-                    if (effectCount == effectCount2):
-                        print ("effectCounts are the same")
-                        print ("reached the end of 2 list %s" % effectCount2)
+                    print("ingcount2")
+                    matchExists = False
+                    for x in effectsListList[effectCount2]:
+                        if x == ing1 or x == ing2:
+                            matchExists = True
+                    while matchExists == False or effectCount2 >= len(effectsListList):
                         effectCount2 += 1
                         ingredientCounter2 = 0
-                    elif ingredientCounter2 == (len(effectsListList[effectCount2]) - 1):
-                        print ("end of new effect list")
-                        print ("reached the end of 2 list %s" % effectCount2)
-                        ingredientCounter2 = 0
-                        effectCount2 += 1
+                        for x in effectsListList[effectCount2]:
+                            if x == ing1 or x == ing2:
+                                matchExists = True
+                    if (effectCount2 >= len(effectsListList)):
+                        print("reached the end of the the lists")
+                        ing1 = "empty"
+                        ing2 = "empty"
+                        ing3 = "empty"
                     else:
-                        print("incrementing 2 list")
-                        if effectsListList[effectCount2][ingredientCounter2] == ing1 or effectsListList[effectCount2][ingredientCounter2] == ing2:
-                            print ("there was a copy ingredient")
-                            ingredientCounter2 += 1
+                        while effectsListList[effectCount2][ingredientCounter2] in usedIngredients and ingredientCounter2 < len(effectsListList[effectCount2]):
+                            ingredientCounter += 1
+                        if (effectCount == effectCount2):
+                            print ("effectCounts are the same")
+                            print ("reached the end of 2 list %s" % effectCount2)
+                            effectCount2 += 1
+                            ingredientCounter2 = 0
+                        elif ingredientCounter2 == (len(effectsListList[effectCount2]) - 1):
+                            print ("end of new effect list")
+                            print ("reached the end of 2 list %s" % effectCount2)
+                            ingredientCounter2 = 0
+                            effectCount2 += 1
+                        else:
+                            print("incrementing 2 list")
                             if effectsListList[effectCount2][ingredientCounter2] == ing1 or effectsListList[effectCount2][ingredientCounter2] == ing2:
-                                print ("there was a second copy ingredient")
+                                print ("there was a copy ingredient")
+                                ingredientCounter2 += 1
+                                if effectsListList[effectCount2][ingredientCounter2] == ing1 or effectsListList[effectCount2][ingredientCounter2] == ing2:
+                                    print ("there was a second copy ingredient")
+                                else:
+                                    print ("do you have the ingredient %s (y or n)" % effectsListList[effectCount2][ingredientCounter2])
+                                    haveIng = input()
+                                    if haveIng == 'y':
+                                        ing3 = effectsListList[effectCount2][ingredientCounter2]
+                                    if haveIng == 'n':
+                                        usedIngredients.append(effectsListList[effectCount2][ingredientCounter2])
                             else:
                                 print ("do you have the ingredient %s (y or n)" % effectsListList[effectCount2][ingredientCounter2])
                                 haveIng = input()
@@ -174,18 +191,11 @@ while userInput != 'q':
                                     ing3 = effectsListList[effectCount2][ingredientCounter2]
                                 if haveIng == 'n':
                                     usedIngredients.append(effectsListList[effectCount2][ingredientCounter2])
-                        else:
-                            print ("do you have the ingredient %s (y or n)" % effectsListList[effectCount2][ingredientCounter2])
-                            haveIng = input()
-                            if haveIng == 'y':
-                                ing3 = effectsListList[effectCount2][ingredientCounter2]
-                            if haveIng == 'n':
-                                usedIngredients.append(effectsListList[effectCount2][ingredientCounter2])
-                        if(len(effectsListList[effectCount2]) > ingredientCounter2):
-                            ingredientCounter2 += 1
-                        else:
-                            ingredientCounter2 = 1
-                            effectCount2 = 1
+                            if(len(effectsListList[effectCount2]) > ingredientCounter2):
+                                ingredientCounter2 += 1
+                            else:
+                                ingredientCounter2 = 1
+                                effectCount2 = 1
 
     printMenu()
     userInput = input()
