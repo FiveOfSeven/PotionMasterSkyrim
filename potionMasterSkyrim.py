@@ -6,7 +6,7 @@ print ("Skyrim Potion Master Program\n")
 #potionFile.close()
 
 def printMenu():
-    print ("press q to quit, d to display, n for next clock cycle, s to dislpay a list, f to display an ingredient")
+    print ("press q to quit, d to display, n for next clock cycle, s to dislpay a list, f to display an ingredient, saveused will save the used ingredient list, loadused to load saved used ingredient data")
 
 
 effectsListList = [[]]
@@ -23,7 +23,7 @@ ingredientCounter2 = 1
 effectCount2 = 0
 
 
-with open('./skyrimEffectsToIngredients', 'r') as potionFile:
+with open('./dataPotionMaster/skyrimEffectsToIngredients', 'r') as potionFile:
     for line in potionFile:
         if lIsEmpty == -1:
             lIsEmpty = 3
@@ -53,6 +53,14 @@ for x in effectsListList[0]:
 printMenu()
 userInput = input()
 while userInput != 'q':
+    if userInput == 'saveused':
+        with open('./dataPotionMaster/usedIngredientsFile', 'w') as usedFile:
+            for line in usedIngredients:
+                usedFile.write(line)
+    if userInput == 'loadused':
+        with open('./dataPotionMaster/usedIngredientsFile', 'r') as usedFile:
+            for line in usedFile:
+                usedIngredients.append(line)
     if userInput == 'f':
         print("Please input a list index")
         listIndex = input() 
@@ -160,7 +168,7 @@ while userInput != 'q':
                         ing2 = "empty"
                         ing3 = "empty"
                     else:
-                        while effectsListList[effectCount2][ingredientCounter2] in usedIngredients and effectCount2 < len(effectsListList) and ingredientCounter2 < len(effectsListList[effectCount]):
+                        while effectsListList[effectCount2][ingredientCounter2] in usedIngredients and effectCount2 < len(effectsListList) and ingredientCounter2 < len(effectsListList[effectCount2]):
                             ingredientCounter2 += 1
                         if (effectCount == effectCount2):
                             print ("effectCounts are the same")
