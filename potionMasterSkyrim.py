@@ -1,3 +1,5 @@
+
+import pdb
 print ("Skyrim Potion Master Program\n")
 
 #potionFile = open('./skyrimEffectsToIngredients', 'r')
@@ -111,8 +113,8 @@ while userInput != 'q':
             if ing3 != "empty":
                 ingCount += 1
             if ingCount == 1:
-                while effectsListList[effectCount][ingredientCounter2] in usedIngredients and effectCount2 < len(effectsListList) and ingredientCounter < len(effectsListList[effectCount]):
-                    ingredientCounter += 1
+                while effectsListList[effectCount][ingredientCounter2] in usedIngredients and effectCount < len(effectsListList) and ingredientCounter < len(effectsListList[effectCount]):
+                    ingredientCounter2 += 1
                 if ingredientCounter2 == (len(effectsListList[effectCount]) - 1):
                     print ("reached the end of list %s" % effectCount)
                     ingredientCounter = 0
