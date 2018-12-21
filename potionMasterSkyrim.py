@@ -169,7 +169,7 @@ while userInput != 'q':
                         ing3 = "empty"
                     else:
                         #pdb.set_trace()
-                        while effectsListList[effectCount2][ingredientCounter2] in usedIngredients and effectCount2 < len(effectsListList) and ingredientCounter2 < len(effectsListList[effectCount2]):
+                        while effectsListList[effectCount2][ingredientCounter2] in usedIngredients and effectCount2 < len(effectsListList) and ingredientCounter2 < len(effectsListList[effectCount2]) or effectsListList[effectCount2][ingredientCounter2] == ing1 or effectsListList[effectCount2][ingredientCounter2] == ing2:
                             ingredientCounter2 += 1
                         if (effectCount == effectCount2):
                             print ("effectCounts are the same")
@@ -183,11 +183,13 @@ while userInput != 'q':
                             effectCount2 += 1
                         else:
                             print("incrementing 2 list")
-                            if effectsListList[effectCount2][ingredientCounter2] == ing1 or effectsListList[effectCount2][ingredientCounter2] == ing2:
-                                print ("there was a copy ingredient")
+                            if effectsListList[effectCount2][ingredientCounter2] == ing1 or effectsListList[effectCount2][ingredientCounter2] == ing2: #this code should never run because of the above while loop
                                 ingredientCounter2 += 1
                                 if effectsListList[effectCount2][ingredientCounter2] == ing1 or effectsListList[effectCount2][ingredientCounter2] == ing2:
-                                    print ("there was a second copy ingredient")
+                                    print ("there were two copy ingredient")
+                                    ingredientCounter2 += 1
+                                else:
+                                    print ("there was a copy ingredient")
                             else:
                                 print ("do you have the ingredient %s (y or n)" % effectsListList[effectCount2][ingredientCounter2])
                                 haveIng = input()
